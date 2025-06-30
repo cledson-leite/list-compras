@@ -24,7 +24,7 @@ export default function TabLayout() {
       screenOptions={{
         tabBarShowLabel: false,
         tabBarActiveTintColor: Colors[colorScheme ?? 'light'].secundarioBorda,
-        tabBarInactiveTintColor: Colors[colorScheme ?? 'light'].textoSecundario,
+        tabBarInactiveTintColor: Colors[colorScheme ?? 'light'].tint,
         tabBarIconStyle: { 
           transitionDuration: '0.5s', transitionTimingFunction: 'ease-in-out', transitionProperty: 'all' 
         },
@@ -42,9 +42,10 @@ export default function TabLayout() {
           }} />
         ),
         headerTitleAlign: 'center',
-        headerTintColor: Colors[colorScheme ?? 'light'].textoPrincipal,
+        headerTintColor: Colors[colorScheme ?? 'light'].tint,
         headerTitleStyle: {
-          fontWeight: 'bold',
+          fontFamily: 'Guchi',
+          fontSize: 32
         }
       }}>
         <Tabs.Screen
@@ -57,7 +58,7 @@ export default function TabLayout() {
       <Tabs.Screen
         name="index"
         options={{
-          title: 'Lista',
+          title: 'Lista de Compras',
           tabBarIcon: ({ color, focused, size }) => <TabBarIcon name="list" color={color} size={focused ? 30 : size} />,
         }}
       />

@@ -8,7 +8,7 @@ type Props = {
 }
 
 export const FABMain = ({ open, onToggle }: Props) => {
-  const [isOpen, setIsOpen] = useState(open.value)
+  const [isOpen, setIsOpen] = useState(false)
 
   useAnimatedReaction(
     () => open.value,

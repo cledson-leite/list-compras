@@ -8,11 +8,11 @@ export default {
     sucessoPreenchimento: '#B0EACD',
     alertaBorda: '#E94F37',
     alertaPreenchimento: '#F5A8A0',
-    textoPrincipal: '#222',
+    textoPrincipal: '#444',
     textoSecundario: '#666',
     cinzaClaro: '#DDD',
     background: '#FFF',
-    tint: '#222',
+    tint: '#444',
   },
   dark: {
     principalBorda: '#63B3D7',
@@ -26,7 +26,7 @@ export default {
     textoPrincipal: '#fff',
     textoSecundario: '#AAA',
     cinzaClaro: '#444',
-    background: '#fff',
+    background: '#222',
     tint: '#fff',
   },
 };

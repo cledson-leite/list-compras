@@ -29,4 +29,4 @@ export default {
     background: '#222',
     tint: '#fff',
   },
-};
+} as const

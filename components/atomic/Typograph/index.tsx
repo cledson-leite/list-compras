@@ -14,6 +14,6 @@ export default function Typograph({variant, type, children, ...rest}: TypographP
   const colorScheme = useColorScheme();
   const style = styles(Colors[colorScheme ?? 'light'][color]);
   return (
-      <Text style={style[variant]} {...rest}>{children}</Text>
+      <Text style={[style[variant], {textAlign: 'center'}]} {...rest}>{children}</Text>
   )
 }

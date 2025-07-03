@@ -1,0 +1,1 @@
+export const units = ['unidade', 'quilo'] as const;

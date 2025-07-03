@@ -23,7 +23,7 @@ SplashScreen.preventAutoHideAsync();
 
 export default function RootLayout() {
   const [loaded, error] = useFonts({
-    Guchi: require('../assets/fonts/GochiHand-Regular.ttf'),
+    'GochiHand': require('../assets/fonts/GochiHand-Regular.ttf'),
     ...FontAwesome.font,
   });
 

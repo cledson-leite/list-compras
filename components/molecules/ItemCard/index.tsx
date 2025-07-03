@@ -1,15 +1,10 @@
 import { useColorScheme } from 'react-native'
-import { styles } from './item-card.styles'
-import Colors from '@/constants/Colors';
-import { FormatUnit } from '@/utils/formatUnit';
+import { memo } from 'react';
 import { View } from '@/styles/Themed';
-import Typograph from '@/components/atomic/Typograph';
-import IconButton from '@/components/atomic/IconButton';
-import Checkbox from '@/components/atomic/CheckBox';
-import ItemCardHeader from '../ItemCardHeader';
-import ItemCardInfo from '../ItemCardInfo';
+import Colors from '@/constants/Colors';
 import ItemCardContent from '../ItemCardContent';
 import ItemCardActions from '../ItemCardActions';
+import { styles } from './item-card.styles'
 
 export type ItemCardProps = {
   nome: string,
@@ -19,7 +14,7 @@ export type ItemCardProps = {
   preco?: number
 }
 
-export default function ItemCard(props: ItemCardProps) {
+function ItemCard(props: ItemCardProps) {
   const colorScheme = useColorScheme();
   const style = styles(Colors[colorScheme ?? 'light']);
   return (
@@ -29,3 +24,5 @@ export default function ItemCard(props: ItemCardProps) {
     </View>
   )
 }
+
+export default  memo(ItemCard);

@@ -6,7 +6,6 @@ import Colors from '@/constants/Colors';
 import { useColorScheme } from '@/styles/useColorScheme';
 import { View } from 'react-native';
 
-// You can explore the built-in icon families and icons on the web at https://icons.expo.fyi/
 function TabBarIcon(props: {
   name: React.ComponentProps<typeof FontAwesome>['name'];
   color: string;
@@ -44,7 +43,7 @@ export default function TabLayout() {
         headerTitleAlign: 'center',
         headerTintColor: Colors[colorScheme ?? 'light'].tint,
         headerTitleStyle: {
-          fontFamily: 'Guchi',
+          fontFamily: 'GochiHand',
           fontSize: 32
         }
       }}>

@@ -7,6 +7,7 @@ import ItemCardActions from '../ItemCardActions';
 import { styles } from './item-card.styles'
 
 export type ItemCardProps = {
+  id?: string,
   nome: string,
   categoria: string,
   unidade: 'quilo' | 'unidade',
@@ -20,7 +21,7 @@ function ItemCard(props: ItemCardProps) {
   return (
     <View style={style.container}>
       <ItemCardContent {...props} />
-      <ItemCardActions />
+      <ItemCardActions id={props.id || '1'} />
     </View>
   )
 }

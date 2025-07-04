@@ -1,15 +1,14 @@
 import { View } from 'react-native'
-import { useForm, Controller } from 'react-hook-form';
+import {Controller } from 'react-hook-form';
 import Label from '@/components/atomic/Label'
-import { zodResolver } from '@hookform/resolvers/zod';
-import { schema } from '@/constants/scheme';
 import Input from '@/components/atomic/Input';
 import Select from '@/components/atomic/Select';
 import InputNumber from '@/components/atomic/InputNumber';
 import { styles } from './fieldsForm.styles';
+import { CATEGORIAS } from '@/constants/categorias';
+import { UNITS } from '@/constants/units';
 
-export default function FieldsForm() {
-  const {control} = useForm({resolver: zodResolver(schema)})
+export default function FieldsForm({control}: {control: any}) {
   return (
     <View>
       <Label>Nome</Label>
@@ -22,15 +21,26 @@ export default function FieldsForm() {
       />
       <View style={styles.qntUnit}>
         <View>
+          <Label>Categoria</Label>
+          <Controller
+            control={control}
+            name="categoria"
+            render={({ field: { value, onChange } }) => (
+              <Select onChange={onChange} value={value} options={[...CATEGORIAS]}/>
+            )}
+          />
+        </View>
+        <View>
           <Label>Unidade</Label>
           <Controller
             control={control}
             name="unidade"
             render={({ field: { value, onChange } }) => (
-              <Select onChange={onChange} value={value} />
+              <Select onChange={onChange} value={value} options={[...UNITS]}/>
             )}
           />
         </View>
+      </View>
         <View>
           <Label>Quantidade</Label>
           <Controller
@@ -41,7 +51,6 @@ export default function FieldsForm() {
             )}
           />
         </View>
-      </View>
     </View>
   )
 }

@@ -7,18 +7,16 @@ import { FontAwesome } from '@expo/vector-icons'
 
 type SelectProps = {
   value: string
+  options: string[]
   onChange: (value: any) => void
 }
 
-export default function Select({value, onChange}: SelectProps) {
+export default function Select({value, onChange, options}: SelectProps) {
   const colorScheme = useColorScheme();
   const style = styles(Colors[colorScheme ?? 'light']);
 
   const [open, setOpen] = useState(false);
-  const [items, setItems] = useState([
-    {label: 'Unidade', value: 'unidade'},
-    {label: 'Quilo', value: 'quilo'},
-  ]);
+  const [items, setItems] = useState(options.map((option) => ({label: option, value: option})));
   return (
     <DropDownPicker
       open={open}

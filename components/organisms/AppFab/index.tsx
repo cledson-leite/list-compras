@@ -9,7 +9,6 @@ import { styles } from "../FABMenu/styles"
 function AppFab() {
   const pathname = usePathname();
   const { handleAddProduct } = useFabButtonActions()
-  console.log(pathname)
   if (pathname === '/historico') {
     return <FABMenu />; 
   } else {

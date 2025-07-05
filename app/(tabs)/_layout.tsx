@@ -5,6 +5,8 @@ import { Tabs } from 'expo-router';
 import {Colors} from '@/constants';
 import { useColorScheme } from '@/styles/useColorScheme';
 import { View } from 'react-native';
+import ButtonHeaderScreen from '@/components/atomic/ButtonHeaderScreen';
+import { useFabButtonActions } from '@/hooks/useFabButtonActions';
 
 function TabBarIcon(props: {
   name: React.ComponentProps<typeof FontAwesome>['name'];
@@ -25,7 +27,9 @@ export default function TabLayout() {
         tabBarActiveTintColor: Colors[colorScheme ?? 'light'].secundarioBorda,
         tabBarInactiveTintColor: Colors[colorScheme ?? 'light'].tint,
         tabBarIconStyle: { 
-          transitionDuration: '0.5s', transitionTimingFunction: 'ease-in-out', transitionProperty: 'all' 
+          transitionDuration: '0.5s', 
+          transitionTimingFunction: 'ease-in-out', 
+          transitionProperty: 'all',
         },
         tabBarBackground: () => (
           <View style={{ 
@@ -40,7 +44,6 @@ export default function TabLayout() {
             backgroundColor: Colors[colorScheme ?? 'light'].principalPreenchimento,
           }} />
         ),
-        headerTitleAlign: 'center',
         headerTintColor: Colors[colorScheme ?? 'light'].tint,
         headerTitleStyle: {
           fontFamily: 'GochiHand',
@@ -59,6 +62,18 @@ export default function TabLayout() {
         options={{
           title: 'Lista de Compras',
           tabBarIcon: ({ color, focused, size }) => <TabBarIcon name="list" color={color} size={focused ? 30 : size} />,
+          headerRight: function (props) {
+            const { handleAddProduct } = useFabButtonActions()
+            return (
+              <ButtonHeaderScreen type='secundario' onPress={handleAddProduct}>
+                <FontAwesome 
+                  name="plus" 
+                  size={25} 
+                  color={Colors[colorScheme ?? 'light'].textoPrincipal} 
+                />
+              </ButtonHeaderScreen>
+            );
+          },
         }}
       />
       <Tabs.Screen

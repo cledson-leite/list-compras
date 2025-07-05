@@ -1,8 +1,7 @@
-import { Text } from "@/styles/Themed";
 import { TouchableOpacity, useColorScheme } from "react-native";
-import Colors from "@/constants/Colors";
-import { styles } from "./button.styles";
+import {Colors} from "@/constants";
 import Typograph from "../Typograph";
+import { styles } from "./styles";
 
 type ButtonProps = {
   onPress: () => void

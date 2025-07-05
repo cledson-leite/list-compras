@@ -1,7 +1,8 @@
-import Colors from "@/constants/Colors";
+import {Colors} from "@/constants";
 import { TextInput } from "@/styles/Themed";
 import { useColorScheme } from "react-native";
-import { styles } from "./input.styles";
+import { styles } from "./styles";
+import { useMemo } from "react";
 
 type InputProps = {
   value: string;
@@ -10,7 +11,8 @@ type InputProps = {
 
 export default function Input({value, onChange}: InputProps) {
   const colorScheme = useColorScheme();
-  const style = styles(Colors[colorScheme ?? 'light']);
+  const themeColors = Colors[colorScheme ?? 'light'];
+  const style = useMemo(() =>styles(themeColors), [themeColors]);
   return (
     <TextInput style={style.container} value={value} onChangeText={onChange} />
   )

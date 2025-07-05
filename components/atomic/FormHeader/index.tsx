@@ -1,13 +1,14 @@
-import { ReactNode } from 'react'
+import { ReactNode, useMemo } from 'react'
 import { useColorScheme } from 'react-native'
 import { View } from '@/styles/Themed';
 import Typograph from '../Typograph'
-import Colors from '@/constants/Colors';
-import { styles } from './formHeader.styles';
+import {Colors} from "@/constants";
+import { styles } from './styles';
 
 export default function FormHeader({children}: {children: ReactNode}) {
   const colorScheme = useColorScheme();
-  const style = styles(Colors[colorScheme ?? 'light']);
+  const themeColors = Colors[colorScheme ?? 'light'];
+  const style = useMemo(() =>styles(themeColors), [themeColors]);
   return (
     <View style={style.container}>
         <Typograph variant='title'>{children}</Typograph>

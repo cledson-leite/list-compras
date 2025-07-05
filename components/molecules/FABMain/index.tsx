@@ -1,13 +1,19 @@
-import { FABButton } from '@/components/atomic/FABButton'
-import { useAnimatedStyle, withTiming, useAnimatedReaction, runOnJS, SharedValue } from 'react-native-reanimated'
 import { useState } from 'react'
+import { 
+  useAnimatedStyle, 
+  withTiming, 
+  useAnimatedReaction, 
+  runOnJS, 
+  SharedValue 
+} from 'react-native-reanimated'
+import { FABButton } from '@/components/atomic/FABButton'
 
-type Props = {
+type FABProps = {
   open: SharedValue<boolean>
   onToggle: () => void
 }
 
-export const FABMain = ({ open, onToggle }: Props) => {
+export const FABMain = ({ open, onToggle }: FABProps) => {
   const [isOpen, setIsOpen] = useState(false)
 
   useAnimatedReaction(

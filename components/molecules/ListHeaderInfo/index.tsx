@@ -2,11 +2,12 @@ import 'intl'
 import 'intl/locale-data/jsonp/pt-BR'
 
 
-import Typograph from "@/components/atomic/Typograph";
-import Colors from "@/constants/Colors";
 import { View } from "@/styles/Themed";
-import { useColorScheme } from "react-native";
-import { styles } from "./listHeaderInfo.styles";
+
+import { formatToBRL } from '@/utils/formatCurrency';
+import Typograph from "@/components/atomic/Typograph";
+
+import { styles } from "./styles";
 
 type ListHeaderInfoProps = {
   type: 'sucessoBorda' | 'alertaBorda'
@@ -14,10 +15,7 @@ type ListHeaderInfoProps = {
   value: number
 }
 export default function ListHeaderInfo({type, title, value}: ListHeaderInfoProps) {
-  const valeuRaw = type === 'sucessoBorda' ? value.toLocaleString('pt-BR', {
-    style: 'currency',
-    currency: 'BRL',
-  }) : value;
+  const valeuRaw = type === 'sucessoBorda' ? formatToBRL(value) : value;
   return (
     <View style={styles.container}>
       <Typograph variant='body' type={type}>{title}</Typograph>

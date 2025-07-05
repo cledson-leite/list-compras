@@ -1,8 +1,8 @@
-import Colors from '@/constants/Colors'
+import {Colors} from "@/constants"
 import { useColorScheme } from 'react-native'
 import DropDownPicker from 'react-native-dropdown-picker'
-import { styles } from './select.styles'
-import { useState } from 'react'
+import { styles } from './styles'
+import { useMemo, useState } from 'react'
 import { FontAwesome } from '@expo/vector-icons'
 
 type SelectProps = {
@@ -13,7 +13,8 @@ type SelectProps = {
 
 export default function Select({value, onChange, options}: SelectProps) {
   const colorScheme = useColorScheme();
-  const style = styles(Colors[colorScheme ?? 'light']);
+  const themeColors = Colors[colorScheme ?? 'light'];
+  const style = useMemo(() =>styles(themeColors), [themeColors]);
 
   const [open, setOpen] = useState(false);
   const [items, setItems] = useState(options.map((option) => ({label: option, value: option})));

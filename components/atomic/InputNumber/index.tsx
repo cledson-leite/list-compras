@@ -1,7 +1,7 @@
-import Colors from '@/constants/Colors';
+import {Colors} from "@/constants";
 import React from 'react'
 import { useColorScheme } from 'react-native';
-import { styles } from '../Input/input.styles';
+import { styles } from '../Input/styles';
 import { TextInput } from '@/styles/Themed';
 
 type InputNumberProps = {

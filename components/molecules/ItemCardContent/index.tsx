@@ -1,13 +1,18 @@
 import { View } from "@/styles/Themed";
+
+import { useMemo } from "react";
+import { useColorScheme } from "react-native";
+import {Colors} from "@/constants";
 import ItemCardHeader from "../ItemCardHeader";
 import ItemCardInfo from "../ItemCardInfo";
-import { useColorScheme } from "react-native";
-import Colors from "@/constants/Colors";
-import { styles } from "./itemCardContent.styles";
 import { ItemCardProps } from "../ItemCard";
+
+import { styles } from "./styles";
+
 export default function ItemCardContent(props: ItemCardProps) {
   const colorScheme = useColorScheme();
-  const style = styles(Colors[colorScheme ?? 'light']);
+  const themeColors = Colors[colorScheme ?? 'light'];
+  const style = useMemo(() =>styles(themeColors), [themeColors]);
   return (
     <View style={style.container}>
       <ItemCardHeader  title={props.nome}/>

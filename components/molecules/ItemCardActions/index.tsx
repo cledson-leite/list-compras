@@ -1,23 +1,25 @@
-import IconButton from "@/components/atomic/IconButton";
 import { View } from "@/styles/Themed";
-import Colors from "@/constants/Colors";
+
+import { memo, useMemo } from "react";
 import { useColorScheme } from "react-native";
-import { styles } from "./itemCardActions.styles";
-import { useModal } from "@/stores/useModal";
+import { useItemCardActions } from "@/hooks/useItemCardActions";
+import { Colors } from "@/constants";
+import IconButton from "@/components/atomic/IconButton";
 
-export default function ItemCardActions({id}: {id: string}) {
-  const {sendId, onOpen} = useModal();
+import { styles } from "./styles";
+
+function ItemCardActions({ id }: { id: string }) {
+  const { handleEditClick, handleDeleteClick } = useItemCardActions()
   const colorScheme = useColorScheme();
-  const style = styles(Colors[colorScheme ?? 'light']);
+  const themeColors = Colors[colorScheme ?? 'light'];
+  const style = useMemo(() =>styles(themeColors), [themeColors]);
 
-  const onClick = () => {
-    sendId(id)
-    onOpen()
-  }
   return (
     <View style={style.container}>
-      <IconButton icon='edit' onClick={onClick} />
-      <IconButton icon='trash-o' onClick={() => {}} />
+      <IconButton icon='edit' onClick={() => handleEditClick(id)} />
+      <IconButton icon='trash-o' onClick={() => handleDeleteClick(id)} />
     </View>
-  )
+  );
 }
+
+export default memo(ItemCardActions)

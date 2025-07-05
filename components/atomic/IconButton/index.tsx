@@ -1,8 +1,8 @@
-import { Text, View } from '@/styles/Themed'
+import { View } from '@/styles/Themed'
 import { TouchableOpacity, useColorScheme } from 'react-native'
 import FontAwesome from '@expo/vector-icons/FontAwesome';
-import { styles } from './iconButton.styles'
-import Colors from '@/constants/Colors';
+import { styles } from './styles'
+import {Colors} from "@/constants";
 import { ComponentProps } from 'react';
 
 type IconButtonProps = {

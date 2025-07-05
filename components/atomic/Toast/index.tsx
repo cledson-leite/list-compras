@@ -1,8 +1,7 @@
-import Colors from "@/constants/Colors";
-import { View } from "@/styles/Themed";
+import {Colors} from "@/constants";
 import { useColorScheme } from "react-native";
 import { Snackbar } from "react-native-paper";
-import { styles } from "./toaste.styles";
+import { styles } from "./styles";
 
 type ToastProps = {
   show: boolean

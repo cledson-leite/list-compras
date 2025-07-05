@@ -6,5 +6,7 @@ export const FormatUnit = (unidade: string, quantidade: number) => {
       return quantidade + ' L'
     case 'unidade':
       return quantidade + ' un'
+    default:
+      return ''
   }
 }

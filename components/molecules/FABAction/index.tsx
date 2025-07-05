@@ -1,9 +1,8 @@
-// components/molecules/FABAction.tsx
-import { FABButton } from '@/components/atomic/FABButton'
-import Colors from '@/constants/Colors'
-import { FontAwesome } from '@expo/vector-icons'
 import { ComponentProps } from 'react'
+import { FontAwesome } from '@expo/vector-icons'
 import { useAnimatedStyle, withSpring, withTiming } from 'react-native-reanimated'
+import {Colors} from "@/constants"
+import { FABButton } from '@/components/atomic/FABButton'
 
 type FABActionProps = {
   index: number

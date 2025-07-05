@@ -1,8 +1,8 @@
 import { Text, TextProps } from "@/styles/Themed"
 import { ReactNode } from "react"
-import { styles } from "./typograph.styles"
+import { styles } from "./styles"
 import { useColorScheme } from "react-native"
-import Colors from "@/constants/Colors"
+import {Colors} from "@/constants"
 
 type TypographProps = TextProps & {
   variant: 'title' | 'subtitle' | 'body'

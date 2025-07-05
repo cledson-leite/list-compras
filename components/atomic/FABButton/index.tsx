@@ -2,8 +2,8 @@ import React, { ComponentProps } from 'react'
 import { ViewStyle, Pressable, useColorScheme } from 'react-native'
 import { FontAwesome } from '@expo/vector-icons'
 import Animated, { AnimatedStyle } from 'react-native-reanimated'
-import Colors from '@/constants/Colors'
-import { styles } from './FABButton.styles'
+import {Colors} from "@/constants"
+import { styles } from './styles'
 
 type Props = {
   icon: ComponentProps<typeof FontAwesome>['name']

@@ -1,14 +1,18 @@
-import { View } from 'react-native'
-import {Controller } from 'react-hook-form';
+import { View } from '@/styles/Themed';
+
+import z from 'zod';
+import {Control, Controller } from 'react-hook-form';
+import { CATEGORIAS, schema, UNITS } from '@/constants';
 import Label from '@/components/atomic/Label'
 import Input from '@/components/atomic/Input';
 import Select from '@/components/atomic/Select';
 import InputNumber from '@/components/atomic/InputNumber';
-import { styles } from './fieldsForm.styles';
-import { CATEGORIAS } from '@/constants/categorias';
-import { UNITS } from '@/constants/units';
 
-export default function FieldsForm({control}: {control: any}) {
+import { styles } from './styles';
+
+type FormData = z.input<typeof schema>;
+
+export default function FieldsForm({control}: {control: Control<FormData>}) {
   return (
     <View>
       <Label>Nome</Label>

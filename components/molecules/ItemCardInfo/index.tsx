@@ -1,20 +1,24 @@
-import { useColorScheme } from 'react-native'
 import { View } from '@/styles/Themed'
-import Typograph from '@/components/atomic/Typograph'
-import Colors from '@/constants/Colors'
-import { styles } from './itemCardInfo.styles'
+
+import { useMemo } from 'react'
+import { useColorScheme } from 'react-native'
+import {Colors} from "@/constants"
 import { FormatUnit } from '@/utils/formatUnit'
+import Typograph from '@/components/atomic/Typograph'
+
+import { styles } from './styles'
 
 type ItemCardInfoProps = {
   categoria: string,
-  unidade: 'quilo' | 'unidade',
+  unidade: string,
   quantidade: number,
   preco?: number
 }
 
 export default function ItemCardInfo({categoria, unidade, quantidade, preco}: ItemCardInfoProps) {
   const colorScheme = useColorScheme();
-  const style = styles(Colors[colorScheme ?? 'light']);
+  const themeColors = Colors[colorScheme ?? 'light'];
+  const style = useMemo(() =>styles(themeColors), [themeColors]);
   return (
     <View style={style.container}>
       <Typograph variant='subtitle'>{categoria}</Typograph>

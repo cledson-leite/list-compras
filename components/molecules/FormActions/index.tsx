@@ -1,8 +1,11 @@
-import Colors from '@/constants/Colors'
 import { View } from '@/styles/Themed'
+
+import { useMemo } from "react";
 import { useColorScheme } from 'react-native'
-import { styles } from './formActions.styles';
+import {Colors} from "@/constants"
 import Button from '@/components/atomic/Button';
+
+import { styles } from './styles';
 
 type ActionsProps = {
   onSubmit: () => Promise<void>
@@ -11,7 +14,8 @@ type ActionsProps = {
 
 export default function FormActions({onSubmit, onCancel}: ActionsProps) {
   const colorScheme = useColorScheme();
-  const style = styles(Colors[colorScheme ?? 'light']);
+  const themeColors = Colors[colorScheme ?? 'light'];
+  const style = useMemo(() =>styles(themeColors), [themeColors]);
   return (
     <View style={style.container}>
       <Button type='sucesso' onPress={onSubmit}>Salvar</Button>

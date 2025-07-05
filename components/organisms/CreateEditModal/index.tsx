@@ -1,9 +1,11 @@
+import { memo } from 'react';
 import Modal from 'react-native-modal';
-import { useModal } from '@/stores/useModal';
+import { useModal } from '@/stores';
 import ListForm from '../ListForm';
-import { styles } from './createEditModal.styles';
 
-export default function CreateEditModal() {
+import { styles } from './styles';
+
+function CreateEditModal() {
   const {isOpen, onClose } = useModal()
   
   return (
@@ -20,3 +22,5 @@ export default function CreateEditModal() {
     </Modal>
   )
 }
+
+export default memo(CreateEditModal)

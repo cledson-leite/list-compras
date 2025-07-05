@@ -6,6 +6,7 @@ type ModalState = {
   sendId: (id: string) => void
   onOpen: () => void
   onClose: () => void
+  
 }
 
 export const useModal = create<ModalState>((set) => ({

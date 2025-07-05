@@ -1,5 +1,5 @@
 import {Checkbox as ExpoCheckbox} from 'expo-checkbox';
-import Colors from '@/constants/Colors';
+import {Colors} from "@/constants";
 import { useColorScheme } from 'react-native';
 
 type CheckboxProps = {

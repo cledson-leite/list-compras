@@ -7,6 +7,7 @@ import Checkbox from '@/components/atomic/CheckBox'
 import Typograph from '@/components/atomic/Typograph'
 
 import { styles } from './styles'
+import { useModal } from '@/stores'
 
 type ItemCardHeaderProps = {
   title: string
@@ -14,11 +15,12 @@ type ItemCardHeaderProps = {
 
 export default function ItemCardHeader({title}: ItemCardHeaderProps) {
   const [checked, setChecked] = useState(false);
+  const {onOpenConfirm} = useModal()
   const colorScheme = useColorScheme();
   const themeColors = Colors[colorScheme ?? 'light'];
   const style = useMemo(() =>styles(themeColors), [themeColors]);
   useEffect(() => {
-    if(checked) console.log('checked')
+    if(checked) onOpenConfirm()
   }, [checked])
   return (
     <View style={style.container}>

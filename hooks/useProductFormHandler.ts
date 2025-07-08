@@ -10,7 +10,7 @@ import z from "zod";
 type FormData = z.input<typeof schema>;
 
 export const useProductFormHandler = (product?: Product) => {
-  const { onClose } = useModal();
+  const { onClose, onCloseConfirm} = useModal();
   const { addProduct, uptadePending, loading } = useListPending();
   const [snackError, setSnackError] = useState('');
 
@@ -33,6 +33,7 @@ export const useProductFormHandler = (product?: Product) => {
       }
       reset();
       onClose();
+      onCloseConfirm();
     },
     (errors) => {
       const message = Object.values(errors)[0]?.message;
@@ -43,6 +44,7 @@ export const useProductFormHandler = (product?: Product) => {
   const onCancel = () => {
     reset();
     setSnackError('');
+    onCloseConfirm();
     onClose();
   };
 

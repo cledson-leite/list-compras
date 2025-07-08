@@ -5,12 +5,14 @@ import ItemsListContainer from "@/components/organisms/ItemsListContainer";
 import CreateEditModal from "@/components/organisms/CreateEditModal";
 
 import { styles } from "./styles"
+import ConfirmModal from "@/components/organisms/ConfirmModal";
 
 export default function ListTemplate() {
   return (
     <View style={styles.container}>
       <ListHeader />
       <ItemsListContainer />
+      <ConfirmModal />
       <CreateEditModal />
     </View>
   )

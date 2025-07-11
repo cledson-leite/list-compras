@@ -30,6 +30,7 @@ const onChange = (value: string) => {
 const onSubmit = () => {
   if (value === '') {
     setSnackError('Preço obrigatório')
+    return
   }
   const confirmProduct = {
     ...product,
@@ -43,6 +44,7 @@ const onCancel = () => {
   setSnackError('')
   onCloseConfirm()
 }
+console.log(product)
   return (
     <View style={styles.container}>
       <FormHeader>Confirmar Produto</FormHeader>

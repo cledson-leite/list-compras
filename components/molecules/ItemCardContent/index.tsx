@@ -15,7 +15,7 @@ export default function ItemCardContent(props: ItemCardProps) {
   const style = useMemo(() =>styles(themeColors), [themeColors]);
   return (
     <View style={style.container}>
-      <ItemCardHeader  title={props.nome}/>
+      <ItemCardHeader  title={props.nome} id={props._id!}/>
       <ItemCardInfo {...props} />
     </View>
   )

@@ -7,20 +7,29 @@ import Checkbox from '@/components/atomic/CheckBox'
 import Typograph from '@/components/atomic/Typograph'
 
 import { styles } from './styles'
-import { useModal } from '@/stores'
+import { useListPending, useModal } from '@/stores'
+import { get } from 'react-native/Libraries/TurboModule/TurboModuleRegistry'
 
 type ItemCardHeaderProps = {
   title: string
+  id: string
 }
 
-export default function ItemCardHeader({title}: ItemCardHeaderProps) {
+export default function ItemCardHeader({title, id}: ItemCardHeaderProps) {
   const [checked, setChecked] = useState(false);
   const {onOpenConfirm} = useModal()
+  const { getPending } = useListPending();
   const colorScheme = useColorScheme();
   const themeColors = Colors[colorScheme ?? 'light'];
   const style = useMemo(() =>styles(themeColors), [themeColors]);
+  const checkedAction = async () => {
+    await getPending(id)
+    onOpenConfirm()
+  }
   useEffect(() => {
-    if(checked) onOpenConfirm()
+    if(checked) {
+      checkedAction()
+    }
   }, [checked])
   return (
     <View style={style.container}>

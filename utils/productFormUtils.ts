@@ -1,6 +1,6 @@
 import z from "zod";
-import { Product } from "@/repositories/pending.respository";
 import { Categoria, CATEGORIAS, schema, Units, UNITS } from "@/constants";
+import { Product } from "@/DTO";
 
 type FormData = z.input<typeof schema>;
 
@@ -22,7 +22,7 @@ export const getProductFormDefaultValues = (product?: Product): FormData => {
  */
 export const mapFormDataToProduct = (formData: FormData, existingProduct?: Product): Product => {
   return {
-    _id: existingProduct?._id || undefined, // Mantém o _id se for uma edição
+    id: existingProduct?.id || undefined, 
     nome: formData.nome,
     categoria: formData.categoria,
     unidade: formData.unidade,

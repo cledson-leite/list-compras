@@ -1,7 +1,6 @@
 import {create} from 'zustand'
 import * as controller from '@/controllers/pending.controller'
-import { Product } from '@/repositories/pending.respository'
-import { Id } from '@/convex/_generated/dataModel'
+import { Product } from '@/DTO'
 
 type ListPendingState = {
   list: Product[]
@@ -26,7 +25,7 @@ export const useListPending = create<ListPendingState>((set, get)=>({
     const count = list.length
     set({list: [...list], countList: count, loading: false})
   },
-  addProduct: async (product: Omit<Product, '_id'>) => {
+  addProduct: async (product: Omit<Product, 'id'>) => {
     set({loading: true})
     await controller.createProduct(product)
     await new Promise((res) => setTimeout(res, 300));
@@ -39,7 +38,7 @@ export const useListPending = create<ListPendingState>((set, get)=>({
       set({product: undefined, loading: false})
       return
     }
-    const product = await controller.getPendingById(id as Id<'pendings'>)
+    const product = await controller.getPendingById(id)
     if (!product) {
       set({product: undefined, loading: false})
       return
@@ -48,18 +47,18 @@ export const useListPending = create<ListPendingState>((set, get)=>({
   },
   uptadePending: async (product: Product) => {
     set({loading: true})
-    if (!product._id) {
+    if (!product.id) {
       set({loading: false})
       return
     }
-    await controller.uptadePending(product, product._id as Id<'pendings'>)
+    await controller.uptadePending(product, product.id )
     await new Promise((res) => setTimeout(res, 300));
     await get().loadList()
     set({loading: false})
   },
   deletePending: async (id: string) => {
     set({loading: true})
-    await controller.deletePneding(id as Id<'pendings'>)
+    await controller.deletePneding(id )
     await new Promise((res) => setTimeout(res, 300));
     await get().loadList()
     set({loading: false})

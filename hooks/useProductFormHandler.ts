@@ -26,7 +26,7 @@ export const useProductFormHandler = (product?: Product) => {
   const onSubmit = handleSubmit(
     async (data) => {
       const newProduct = mapFormDataToProduct(data, product);
-      if (product?._id) {
+      if (product?.id) {
         uptadePending(newProduct);
       } else {
         addProduct(newProduct);

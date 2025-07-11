@@ -8,7 +8,7 @@ import ItemCardActions from '../ItemCardActions';
 import { styles } from './styles'
 
 export type ItemCardProps = {
-  _id?: string,
+  id?: string,
   nome: string,
   categoria: string,
   unidade: string,
@@ -23,7 +23,7 @@ function ItemCard(props: ItemCardProps) {
   return (
     <View style={style.container}>
       <ItemCardContent {...props} />
-      <ItemCardActions id={props._id!} />
+      <ItemCardActions id={props.id!} />
     </View>
   )
 }

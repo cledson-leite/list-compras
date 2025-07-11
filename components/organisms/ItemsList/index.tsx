@@ -17,7 +17,7 @@ function ItemsList({ list }: ItemsListProps) {
     <FlatList
       style={styles.container}
       data={list}
-      keyExtractor={(item) => item._id!.toString()}
+      keyExtractor={(item) => item.id!.toString()}
       renderItem={({ item }) => <ItemCard {...item} />}
       ItemSeparatorComponent={() => <View style={{ height: 10 }} />}
       extraData={list}

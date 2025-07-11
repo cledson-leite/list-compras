@@ -1,7 +1,7 @@
 import { Text, TextProps } from "@/styles/Themed"
 import { ReactNode } from "react"
 import { styles } from "./styles"
-import { useColorScheme } from "react-native"
+import { useColorScheme, Text as DefaultText} from "react-native"
 import {Colors} from "@/constants"
 
 type TypographProps = TextProps & {
@@ -9,11 +9,11 @@ type TypographProps = TextProps & {
   type?: 'sucessoBorda' | 'alertaBorda'
   children: ReactNode
 }
-export default function Typograph({variant, type, children, ...rest}: TypographProps) {
+export default function Typograph({variant, type, children, style, ...rest}: TypographProps & DefaultText['props']) {
   const color = type ?? 'textoPrincipal'
   const colorScheme = useColorScheme();
-  const style = styles(Colors[colorScheme ?? 'light'][color]);
+  const defaultStyle = styles(Colors[colorScheme ?? 'light'][color]);
   return (
-      <Text style={[style[variant], {textAlign: 'center'}]} {...rest}>{children}</Text>
+      <Text style={[defaultStyle[variant], {textAlign: 'center'}, style]} {...rest}>{children}</Text>
   )
 }

@@ -13,12 +13,12 @@ type ProductFormContainerProps = {
   product?: Product;
 }
 
-export const ProductFormContainer = ({ product }: ProductFormContainerProps) => {
+export const ConfirmFormContainer = ({ product }: ProductFormContainerProps) => {
   const { control, onSubmit, onCancel, snackError, setSnackError } = useProductFormHandler(product);
-  const selectedTitle = product ? 'Editar Produto' : 'Novo Produto';
+
   return (
     <View style={styles.container}>
-      <FormHeader>{selectedTitle}</FormHeader>
+      <FormHeader>Confirmar Produto</FormHeader>
       <FieldsForm control={control} />
       <FormActions onSubmit={onSubmit} onCancel={onCancel} />
       <Toast show={!!snackError} onClose={() => setSnackError('')} type='alerta' message={snackError} />

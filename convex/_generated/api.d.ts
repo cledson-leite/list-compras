@@ -13,6 +13,7 @@ import type {
   FilterApi,
   FunctionReference,
 } from "convex/server";
+import type * as confirmed from "../confirmed.js";
 import type * as pending from "../pending.js";
 
 /**
@@ -24,6 +25,7 @@ import type * as pending from "../pending.js";
  * ```
  */
 declare const fullApi: ApiFromModules<{
+  confirmed: typeof confirmed;
   pending: typeof pending;
 }>;
 export declare const api: FilterApi<

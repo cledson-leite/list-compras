@@ -1,14 +1,15 @@
 import { useState, useCallback } from "react";
-import { Product } from "@/repositories/pending.respository";
-import { useModal } from "@/stores";
+import { useListConfirmed, useListPending, useModal } from "@/stores";
+import { Product, Confirmed } from "@/DTO";
 
-export const useConfirmFormHandler = (product?: Product) => {
+export const useConfirmFormHandler = (product: Product) => {
   const { onCloseConfirm } = useModal();
+  const {addConfirmed} = useListConfirmed()
+  const {deletePending} = useListPending()
   const [value, setValue] = useState('');
   const [error, setError] = useState('');
 
   const handleChange = useCallback((text: string) => setValue(text), []);
-
   const handleClose = useCallback(() => {
     setError('');
     onCloseConfirm();
@@ -19,15 +20,16 @@ export const useConfirmFormHandler = (product?: Product) => {
       setError("Preço obrigatório");
       return;
     }
-
-    const confirmProduct = {
+    const confirmProduct: Confirmed = {
       ...product,
-      preco: Number(value),
-    };
-
-    console.log(confirmProduct);
-    handleClose();
-  }, [value, product, handleClose]);
+      id: product?.id!,
+      price: Number(value),
+    }
+    addConfirmed(confirmProduct)
+    deletePending(product?.id as string)
+    
+    handleClose()
+  }, [value, product, addConfirmed, deletePending, handleClose]);
 
   return {
     value,

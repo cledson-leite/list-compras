@@ -1,13 +1,13 @@
-import React from 'react';
 import FontAwesome from '@expo/vector-icons/FontAwesome';
 import { Tabs } from 'expo-router';
 
 import {Colors} from '@/constants';
 import { useColorScheme } from '@/styles/useColorScheme';
-import { View } from 'react-native';
+import { View, Text} from 'react-native';
 import ButtonHeaderScreen from '@/components/atomic/ButtonHeaderScreen';
 import { useFabButtonActions } from '@/hooks/useFabButtonActions';
-
+import { useListConfirmed } from '../../stores/useListConfirmed';
+import { useEffect } from 'react';
 function TabBarIcon(props: {
   name: React.ComponentProps<typeof FontAwesome>['name'];
   color: string;
@@ -18,6 +18,7 @@ function TabBarIcon(props: {
 
 export default function TabLayout() {
   const colorScheme = useColorScheme();
+  const {countConfirmed} = useListConfirmed()
 
   return (
     <Tabs
@@ -54,7 +55,24 @@ export default function TabLayout() {
         name="encontrados"
         options={{
           title: 'Encontrados',
-          tabBarIcon: ({ color, focused, size }) => <TabBarIcon name="check-circle" color={color} size={focused ? 30 : size} />,
+          tabBarIcon: ({ color, focused, size }) => (
+            <View>
+              <TabBarIcon name="check-circle" color={color} size={focused ? 30 : size} />
+              {countConfirmed > 0 && (
+                <View
+                  style={{
+                    position: 'absolute',
+                    top: 0,
+                    right: 0,
+                    width: 10,
+                    height: 10,
+                    backgroundColor: 'red',
+                    borderRadius: 5,
+                  }}
+                />
+              )}
+            </View>
+        ),
         }}
       />
       <Tabs.Screen

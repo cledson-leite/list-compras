@@ -14,7 +14,7 @@ function ConfirmModal() {
       onBackdropPress={onCloseConfirm}
       animationIn="slideInUp"
       animationOut="slideOutDown"
-      backdropOpacity={0.5}
+      backdropOpacity={1}
       useNativeDriver
       style={styles.modal}
     >

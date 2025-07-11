@@ -3,7 +3,6 @@ import { View } from "@/styles/Themed";
 import { styles } from "./styles";
 import { Colors } from "@/constants";
 
-import { Product } from "@/repositories/pending.respository";
 import { FormatUnit } from "@/utils/formatUnit";
 import { useConfirmFormHandler } from "@/hooks/useConfirmFormHandler";
 import FormHeader from "@/components/atomic/FormHeader";
@@ -12,6 +11,7 @@ import Label from "@/components/atomic/Label";
 import InputCurrency from "@/components/atomic/InputCurrency";
 import Button from "@/components/atomic/Button";
 import Toast from "@/components/atomic/Toast";
+import { Product } from "@/DTO";
 
 type Props = {
   product?: Product;
@@ -26,7 +26,7 @@ export const ConfirmFormContainer = ({ product }: Props) => {
     handleSubmit,
     handleClose,
     clearError,
-  } = useConfirmFormHandler(product);
+  } = useConfirmFormHandler(product!);
 
   return (
     <View style={styles.container}>

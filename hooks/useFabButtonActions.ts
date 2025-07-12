@@ -1,7 +1,8 @@
-import { useListPending, useModal } from "@/stores";
+import { useListConfirmed, useListPending, useModal } from "@/stores";
 import { useCallback } from "react";
 
 export const useFabButtonActions = () => {
+  const {deleteAllConfirmed, getTotalPrice} = useListConfirmed()
   const { getPending } = useListPending();
   const { onOpen } = useModal();
 
@@ -9,9 +10,10 @@ export const useFabButtonActions = () => {
     await getPending('');
     onOpen();
   }, [getPending, onOpen]);
-  const handleAddHistory = useCallback(async () => {
-    console.log('add history');
-  }, [console.log]);
+  const handleFinishList= useCallback(async () => {
+    await deleteAllConfirmed()
+    await getTotalPrice()
+  }, [deleteAllConfirmed, getTotalPrice]);
 
-  return { handleAddProduct, handleAddHistory };
+  return { handleAddProduct, handleFinishList };
 };

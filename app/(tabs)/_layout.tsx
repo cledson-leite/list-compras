@@ -76,10 +76,10 @@ export default function TabLayout() {
             )
         },
           headerRight: function (props) {
-            const { handleAddHistory } = useFabButtonActions()
+            const { handleFinishList } = useFabButtonActions()
             if(countList > 0) return null
             return (
-              <ButtonHeaderScreen type='sucesso' onPress={handleAddHistory}>
+              <ButtonHeaderScreen type='sucesso' onPress={handleFinishList}>
                 <FontAwesome 
                   name="check" 
                   size={25} 
@@ -107,13 +107,6 @@ export default function TabLayout() {
               </ButtonHeaderScreen>
             );
           },
-        }}
-      />
-      <Tabs.Screen
-        name="historico"
-        options={{
-          title: 'Historico',
-          tabBarIcon: ({ color, focused, size }) => <TabBarIcon name="history" color={color}  size={focused ? 30 : size}/>,
         }}
       />
     </Tabs>

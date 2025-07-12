@@ -20,13 +20,26 @@ export const createProduct = async (product: Omit<Product, 'id'>) => {
 export const getPendingById = async (id:  string): Promise<Product | undefined> => {
   const _id = id as Id<'pendings'>
   const result = await convexClient.query(api.pending.getPendingById, {_id})
-  return result ? {...result, id: result._id} : undefined
+  return result ? {
+    id: result._id,
+    nome: result.nome,
+    categoria: result.categoria,
+    unidade: result.unidade,
+    quantidade: result.quantidade
+  } : undefined
 }
 
 export const uptadePending = async (product: Product, id:  string) => {
   const productExisted = await getPendingById(id)
+  console.log(productExisted)
   if (!productExisted) return
-  const newProduct = {...product, _id: id as Id<'pendings'>}
+  const newProduct = {
+    _id: id as Id<'pendings'>,
+    nome: product.nome,
+    categoria: product.categoria,
+    unidade: product.unidade,
+    quantidade: product.quantidade
+  }
   await convexClient.mutation(api.pending.uptadePending, newProduct)
 }
 

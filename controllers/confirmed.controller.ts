@@ -37,6 +37,10 @@ export const deleteConfirmed = async (id:  string): Promise<void> => {
   await convexClient.mutation(api.confirmed.deleteConfirmed, {id: id as Id<'pendings'>})
 }
 
+export const deleteAll = async (): Promise<void> => {
+  await convexClient.mutation(api.confirmed.deleteAllConfirmed, {})
+}
+
 export const getTotalPrice = async (): Promise<number> => {
   const list = await getAllConfirmed()
   const total = list.reduce((acc, item) => acc + (item.price * item.quantidade), 0)

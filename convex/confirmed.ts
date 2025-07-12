@@ -37,3 +37,12 @@ export const deleteConfirmed = mutation({
     return ctx.db.delete(existed._id)
   }
 })
+
+export const deleteAllConfirmed = mutation({
+  handler: async (ctx) => {
+    const docs = await ctx.db.query("confirmed").collect()
+    docs.forEach((doc) => {
+      ctx.db.delete(doc._id)
+    })
+  }
+})

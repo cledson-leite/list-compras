@@ -1,5 +1,5 @@
 import { schema } from "@/constants";
-import { Product } from "@/repositories/pending.respository";
+import { Product } from "@/DTO";
 import { useListPending, useModal } from "@/stores";
 import { getProductFormDefaultValues, mapFormDataToProduct } from "@/utils/productFormUtils";
 import { zodResolver } from "@hookform/resolvers/zod";

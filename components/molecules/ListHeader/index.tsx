@@ -11,7 +11,7 @@ function ListHeader() {
   const {totalPrice, getTotalPrice} = useListConfirmed()
   useEffect(() => {
     getTotalPrice()
-  }, [])
+  }, [countList])
   const price = totalPrice / 100
   return (
     <View style={styles.container}>

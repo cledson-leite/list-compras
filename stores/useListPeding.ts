@@ -20,7 +20,6 @@ export const useListPending = create<ListPendingState>((set, get)=>({
   list: [] as Product[],
   product: undefined,
   loadList: async () => {
-    // console.log('loadList')
     set({loading: true})
     const list = await controller.getAllPendings()
     const count = list.length

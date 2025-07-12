@@ -1,7 +1,7 @@
 import { Confirmed } from '@/DTO'
 import * as controller from '@/controllers/confirmed.controller'
 import {create} from 'zustand'
-import { getTotalPrice, getAllConfirmed, getConfirmedById } from '../controllers/confirmed.controller';
+import { getTotalPrice} from '../controllers/confirmed.controller';
 
 type useListConfirmedState = {
   loading: boolean
@@ -14,6 +14,7 @@ type useListConfirmedState = {
   getTotalPrice: () => Promise<void>
   addConfirmed: (consfirmed: Confirmed) => void
   deleteConfirmed: (id: string) => void
+  deleteAllConfirmed: () => void
 }
 
 export const useListConfirmed = create<useListConfirmedState>((set, get)=>({
@@ -57,5 +58,12 @@ export const useListConfirmed = create<useListConfirmedState>((set, get)=>({
       await new Promise((res) => setTimeout(res, 300));
       await get().getAllConfirmed()
       set({loading: false})
-    }
+    },
+  deleteAllConfirmed: async () => {
+      set({loading: true})
+      await controller.deleteAll()
+      await new Promise((res) => setTimeout(res, 300));
+      await get().getAllConfirmed()
+      set({loading: false})
+    },
 }))

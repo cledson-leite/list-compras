@@ -10,7 +10,11 @@ export const getAllPendings = query({
 
 export const getPendingById = query({
   args: { _id: v.id("pendings") },
-  handler: async (ctx, { _id }) => ctx.db.query("pendings").filter((q) => q.eq(q.field("_id"), _id)).first()
+  handler: async (ctx, { _id }) => {
+                    console.log(_id)
+    
+    return ctx.db.query("pendings").filter((q) => q.eq(q.field("_id"), _id)).first()
+  }
 })
 
 export const createPending = mutation({

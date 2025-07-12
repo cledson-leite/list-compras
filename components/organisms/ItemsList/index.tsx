@@ -2,13 +2,13 @@ import { View } from "@/styles/Themed";
 
 import { memo } from "react";
 import { FlatList } from "react-native";
-import { Product } from "@/repositories/pending.respository";
 import ItemCard from "@/components/molecules/ItemCard";
 
 import { styles } from "./styles";
+import { Confirmed, Product } from "@/DTO";
 
 type ItemsListProps = {
-  list: Product[]; 
+  list: Product[] | Confirmed[]; 
 }
 
 function ItemsList({ list }: ItemsListProps) {

@@ -13,7 +13,7 @@ export type ItemCardProps = {
   categoria: string,
   unidade: string,
   quantidade: number,
-  preco?: number
+  price?: number
 }
 
 function ItemCard(props: ItemCardProps) {
@@ -23,7 +23,7 @@ function ItemCard(props: ItemCardProps) {
   return (
     <View style={style.container}>
       <ItemCardContent {...props} />
-      <ItemCardActions id={props.id!} />
+      <ItemCardActions id={props.id!} isConfirmed={!!props.price}/>
     </View>
   )
 }

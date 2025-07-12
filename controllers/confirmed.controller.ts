@@ -5,7 +5,7 @@ import { Confirmed } from "@/DTO"
 
 export const getAllConfirmed = async (): Promise<Confirmed[]> => {
   const result  = await convexClient.query(api.confirmed.getAllCofirmed, {})
-  const list: Confirmed[] = result.map((item) => ({...item, id: item._id}))
+  const list: Confirmed[] = result.map((item) => ({...item}))
   return list
 }
 
@@ -31,7 +31,7 @@ export const getConfirmedById = async (id:  string): Promise<Confirmed | undefin
 }
 
 
-export const deletePneding = async (id:  string): Promise<void> => {
+export const deleteConfirmed = async (id:  string): Promise<void> => {
   const productConfirmed = await getConfirmedById(id)
   if (!productConfirmed) return
   await convexClient.mutation(api.confirmed.deleteConfirmed, {id: id as Id<'pendings'>})

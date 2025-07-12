@@ -3,14 +3,15 @@ import { useListPending } from "@/stores";
 import { Loader } from "@/components/atomic/Loader";
 import { Empty } from "@/components/atomic/Empty";
 import ItemsList from "../ItemsList";
+import { Confirmed, Product } from "@/DTO";
 
-function ItemsListContainer() {
-  const { list, loading, loadList } = useListPending();
+type ItemsListContainerProps = {
+  list: Confirmed[] |Product[]
+  loading: boolean
+}
 
-  useEffect(() => {
-    loadList();
-  }, []);
-
+function ItemsListContainer({ list, loading }: ItemsListContainerProps) {
+  const isConfirmeds= !!(list[0] as Confirmed)?.price;
   if (loading) {
     return <Loader isLoading={loading} />;
   }
@@ -18,8 +19,8 @@ function ItemsListContainer() {
   if (list.length === 0) {
     return (
       <Empty 
-        title="Nenhum pedido pendente" 
-        subtitle="Você ainda não possui nenhum pedido pendente." 
+        title={`Nenhum pedido ${isConfirmeds ? 'confirmado' : 'pendente'}.`} 
+        subtitle={`Você ainda não possui nenhum pedido ${isConfirmeds ? 'confirmado' : 'pendente'}.`} 
       />
     );
   }

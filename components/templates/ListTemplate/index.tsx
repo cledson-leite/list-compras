@@ -6,12 +6,18 @@ import CreateEditModal from "@/components/organisms/CreateEditModal";
 
 import { styles } from "./styles"
 import ConfirmModal from "@/components/organisms/ConfirmModal";
+import { useEffect } from "react";
+import { useListPending } from "@/stores";
 
 export default function ListTemplate() {
+  const { list, loading, loadList } = useListPending();
+  useEffect(() => {
+      loadList();
+    }, []);
   return (
     <View style={styles.container}>
       <ListHeader />
-      <ItemsListContainer />
+      <ItemsListContainer list={list} loading={loading}/>
       <ConfirmModal />
       <CreateEditModal />
     </View>

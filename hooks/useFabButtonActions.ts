@@ -9,6 +9,9 @@ export const useFabButtonActions = () => {
     await getPending('');
     onOpen();
   }, [getPending, onOpen]);
+  const handleAddHistory = useCallback(async () => {
+    console.log('add history');
+  }, [console.log]);
 
-  return { handleAddProduct };
+  return { handleAddProduct, handleAddHistory };
 };

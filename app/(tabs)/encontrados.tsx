@@ -1,11 +1,6 @@
 import React from 'react'
-import { styles } from '@/styles/Global.styles'
-import { Text, View } from '@/styles/Themed'
+import ConfirmedTemplate from '@/components/templates/ConfirmedTemplate'
 
 export default function encontrados() {
-  return (
-    <View style={styles.container}>
-      <Text style={styles.title}>Encontrados</Text>
-    </View>
-  )
+  return <ConfirmedTemplate />
 }

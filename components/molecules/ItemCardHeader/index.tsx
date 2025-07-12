@@ -8,14 +8,9 @@ import Typograph from '@/components/atomic/Typograph'
 
 import { styles } from './styles'
 import { useListPending, useModal } from '@/stores'
-import { get } from 'react-native/Libraries/TurboModule/TurboModuleRegistry'
+import { ItemCardProps } from '../ItemCard'
 
-type ItemCardHeaderProps = {
-  title: string
-  id: string
-}
-
-export default function ItemCardHeader({title, id}: ItemCardHeaderProps) {
+export default function ItemCardHeader(props: ItemCardProps) {
   const [checked, setChecked] = useState(false);
   const {onOpenConfirm} = useModal()
   const { getPending } = useListPending();
@@ -23,7 +18,7 @@ export default function ItemCardHeader({title, id}: ItemCardHeaderProps) {
   const themeColors = Colors[colorScheme ?? 'light'];
   const style = useMemo(() =>styles(themeColors), [themeColors]);
   const checkedAction = async () => {
-    await getPending(id)
+    await getPending(props.id!)
     onOpenConfirm()
   }
   useEffect(() => {
@@ -33,11 +28,11 @@ export default function ItemCardHeader({title, id}: ItemCardHeaderProps) {
   }, [checked])
   return (
     <View style={style.container}>
-      <Checkbox
+      {!props.price && <Checkbox
         value={checked}
         onValueChange={() => setChecked(!checked)}
-      />
-      <Typograph variant='title'>{title}</Typograph>
+      />}
+      <Typograph variant='title'>{props.nome}</Typograph>
     </View>
   )
 }

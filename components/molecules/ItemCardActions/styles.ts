@@ -9,4 +9,9 @@ export const styles = (colors: any) =>StyleSheet.create({
     marginLeft: 20,
     backgroundColor: colors.principalPreenchimento,
   },
+  confirmed: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    width: 30,
+  },
 });

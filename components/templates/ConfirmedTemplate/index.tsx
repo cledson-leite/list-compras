@@ -2,7 +2,7 @@ import { View } from "@/styles/Themed";
 
 import ItemsListContainer from "@/components/organisms/ItemsListContainer";
 
-import { styles } from "./styles";
+import { styles } from "./confirmed.template.styles";
 import { useListConfirmed } from "@/stores";
 import { useEffect } from "react";
 import ListConfirmedHeader from "@/components/molecules/ListConfirmedHeader";

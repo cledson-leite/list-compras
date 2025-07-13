@@ -10,6 +10,7 @@ export default {
     alertaPreenchimento: '#F5A8A0',
     textoPrincipal: '#444',
     textoSecundario: '#666',
+    cinzaEscuro: '#AAA',
     cinzaClaro: '#DDD',
     background: '#FFF',
     tint: '#444',

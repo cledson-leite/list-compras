@@ -4,7 +4,7 @@ import ListHeader from "@/components/molecules/ListHeader";
 import ItemsListContainer from "@/components/organisms/ItemsListContainer";
 import CreateEditModal from "@/components/organisms/CreateEditModal";
 
-import { styles } from "./styles"
+import { styles } from "./list.template.styles"
 import ConfirmModal from "@/components/organisms/ConfirmModal";
 import { useEffect } from "react";
 import { useListPending } from "@/stores";

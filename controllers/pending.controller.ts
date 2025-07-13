@@ -1,51 +1,38 @@
-import { api } from "@/convex/_generated/api"
-import { Id } from "@/convex/_generated/dataModel"
-import { convexClient } from "@/database"
+import * as Crypto from 'expo-crypto'
+import * as repository from '@/repository/pendingsRepository'
 import { Product } from "@/DTO"
 
 export const getAllPendings = async (): Promise<Product[]> => {
-  const result  = await convexClient.query(api.pending.getAllPendings, {})
-  const list: Product[] = result.map((item) => ({...item, id: item._id}))
-  return list
-}
+  console.log('controller getAll Pending')
+  return await repository.getAllPendings()}
 
+export const getPendingById = async (id:  string): Promise<Product | undefined> => {
+  console.log('controller get Pending')
+  const result = await repository.getPendingById(id)
+  console.log('controller get Pending')
+  if(!result) return
+  return result 
+}
 export const createProduct = async (product: Omit<Product, 'id'>) => {
+  console.log('controller create Pending')
   const list = await getAllPendings()
   const productExists = list.find((item) => item.nome === product.nome)
   if (productExists)  return
-  const result =await convexClient.mutation(api.pending.createPending, product)
-  if(!result) return
-}
-
-export const getPendingById = async (id:  string): Promise<Product | undefined> => {
-  const _id = id as Id<'pendings'>
-  const result = await convexClient.query(api.pending.getPendingById, {_id})
-  return result ? {
-    id: result._id,
-    nome: result.nome,
-    categoria: result.categoria,
-    unidade: result.unidade,
-    quantidade: result.quantidade
-  } : undefined
+  const id = Crypto.randomUUID()
+  const newproduct  = {...product, id}
+  await repository.createPending(newproduct)
 }
 
 export const uptadePending = async (product: Product, id:  string) => {
+  console.log('controller uptade Pending')
   const productExisted = await getPendingById(id)
-  console.log(productExisted)
   if (!productExisted) return
-  const newProduct = {
-    _id: id as Id<'pendings'>,
-    nome: product.nome,
-    categoria: product.categoria,
-    unidade: product.unidade,
-    quantidade: product.quantidade
-  }
-  await convexClient.mutation(api.pending.uptadePending, newProduct)
+  await repository.updatePending(product)
 }
 
-export const deletePneding = async (id:  string): Promise<void> => {
+export const deletePending = async (id:  string): Promise<void> => {
+  console.log('controller delete Pending')
   const productExisted = await getPendingById(id)
   if (!productExisted) return
-  const _id = id as Id<'pendings'>
-  await convexClient.mutation(api.pending.deletePending, {_id})
+  await repository.deletePending(id)
 }

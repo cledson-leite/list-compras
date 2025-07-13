@@ -33,7 +33,8 @@ export default {
       "favicon": "./assets/images/favicon.png"
     },
     "plugins": [
-      "expo-router"
+      "expo-router",
+      "expo-sqlite"
     ],
     "experiments": {
       "typedRoutes": true

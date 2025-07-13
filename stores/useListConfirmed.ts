@@ -23,46 +23,50 @@ export const useListConfirmed = create<useListConfirmedState>((set, get)=>({
   countConfirmed: 0,
   confirmeds: [] as Confirmed[],
   getAllConfirmed: async () => {
+    console.log('getAllConfirmed')
     set({loading: true})
     const confirmeds = await controller.getAllConfirmed()
     set({confirmeds: [...confirmeds], loading: false})
   },
   getConfirmedById: async (id: string): Promise<Confirmed> => {
+    console.log('getConfirmedById')
     set({loading: true})
     const confirmed = await controller.getConfirmedById(id)
     set({loading: false})
     return confirmed!
   },
   getTotalPrice: async () => {
+    console.log('getTotalPrice')
     set({loading: true})
     const total = await getTotalPrice()
     set({totalPrice: total, loading: false})
   },
   addConfirmed: async (confirmed: Confirmed) => {
+    console.log('addConfirmed')
     set({loading: true})
     await controller.createConfirmed(confirmed)
-    await new Promise((res) => setTimeout(res, 300))
     await get().getAllConfirmed()
     await get().getCountConfirmed()
     await get().getTotalPrice()
     set({loading: false})
   },
   getCountConfirmed: async () => {
+    console.log('getCountConfirmed')
     set({loading: true})
     const count = await controller.getAllConfirmed()
     set({countConfirmed: count.length, loading: false})
   },
   deleteConfirmed: async (id: string) => {
-      set({loading: true})
-      await controller.deleteConfirmed(id)
-      await new Promise((res) => setTimeout(res, 300));
+    set({loading: true})
+    await controller.deleteConfirmed(id)
+    console.log('deleteConfirmed')
       await get().getAllConfirmed()
       set({loading: false})
     },
   deleteAllConfirmed: async () => {
+    console.log('deleteAllConfirmed')
       set({loading: true})
       await controller.deleteAll()
-      await new Promise((res) => setTimeout(res, 300));
       await get().getAllConfirmed()
       set({loading: false})
     },

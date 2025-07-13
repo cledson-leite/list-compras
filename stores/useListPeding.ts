@@ -20,19 +20,21 @@ export const useListPending = create<ListPendingState>((set, get)=>({
   list: [] as Product[],
   product: undefined,
   loadList: async () => {
+    console.log('loadList')
     set({loading: true})
     const list = await controller.getAllPendings()
     const count = list.length
     set({list: [...list], countList: count, loading: false})
   },
   addProduct: async (product: Omit<Product, 'id'>) => {
+    console.log('addProduct')
     set({loading: true})
     await controller.createProduct(product)
-    await new Promise((res) => setTimeout(res, 300));
     await get().loadList()
     set({ loading: false})
   },
   getPending: async (id: string) => {
+    console.log('getPending')
     set({ loading: true})
     if (!id) {
       set({product: undefined, loading: false})
@@ -47,20 +49,21 @@ export const useListPending = create<ListPendingState>((set, get)=>({
     set({product, loading: false})
   },
   uptadePending: async (product: Product) => {
+    console.log('uptadePending')
     set({loading: true})
     if (!product.id) {
       set({loading: false})
       return
     }
     await controller.uptadePending(product, product.id )
-    await new Promise((res) => setTimeout(res, 300));
+    // await new Promise((res) => setTimeout(res, 300));
     await get().loadList()
     set({loading: false})
   },
   deletePending: async (id: string) => {
+    console.log('getAllConfirmed')
     set({loading: true})
-    await controller.deletePneding(id )
-    await new Promise((res) => setTimeout(res, 300));
+    await controller.deletePending(id )
     await get().loadList()
     set({loading: false})
   }

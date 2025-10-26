@@ -8,7 +8,7 @@ import { styles } from "./styles";
 import { Confirmed, Product } from "@/DTO";
 
 type ItemsListProps = {
-  list: Product[] | Confirmed[]; 
+  list: Product[] | Confirmed[];
 }
 
 function ItemsList({ list }: ItemsListProps) {
@@ -21,6 +21,7 @@ function ItemsList({ list }: ItemsListProps) {
       renderItem={({ item }) => <ItemCard {...item} />}
       ItemSeparatorComponent={() => <View style={{ height: 10 }} />}
       extraData={list}
+      inverted={true}
     />
   );
 }
